@@ -227,7 +227,7 @@ extension Source.Location: Comparable {
             try container.encode(position.column.underlying.rawValue, forKey: .column)
         }
     }
-    // swiftlint:enable no_any_protocol_existential typed_throws_required
+// swiftlint:enable no_any_protocol_existential typed_throws_required
 #endif
 
 // MARK: - CustomStringConvertible
