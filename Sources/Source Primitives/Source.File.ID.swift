@@ -25,15 +25,17 @@ extension Source.File {
         internal let underlying: Int
 
         @inlinable
-        internal init(_ underlying: Int) {
+        package init(_ underlying: Int) {
             self.underlying = underlying
         }
+    }
+}
 
-        /// Orders two file IDs by their registration sequence.
-        @inlinable
-        public static func < (lhs: Source.File.ID, rhs: Source.File.ID) -> Bool {
-            lhs.underlying < rhs.underlying
-        }
+extension Source.File.ID {
+    /// Orders two file IDs by their registration sequence.
+    @inlinable
+    public static func < (lhs: Source.File.ID, rhs: Source.File.ID) -> Bool {
+        lhs.underlying < rhs.underlying
     }
 }
 
