@@ -60,14 +60,14 @@ extension Source {
         internal var contents: [[Byte]]
 
         @usableFromInline
-        internal var lineMaps: [Text.Line.Map?]
+        internal var maps: [Text.Line.Map?]
 
         /// Creates an empty source manager.
         @inlinable
         public init() {
             self.files = []
             self.contents = []
-            self.lineMaps = []
+            self.maps = []
         }
     }
 }
@@ -93,7 +93,7 @@ extension Source.Manager {
         let file = Source.File(id: id, fileID: fileID, filePath: filePath)
         files.append(file)
         contents.append(content)
-        lineMaps.append(nil)
+        maps.append(nil)
         return id
     }
 }
@@ -135,11 +135,11 @@ extension Source.Manager {
     /// - Returns: The line map for that file.
     @inlinable
     public mutating func lineMap(for id: Source.File.ID) -> Text.Line.Map {
-        if let existing = lineMaps[id.underlying] {
+        if let existing = maps[id.underlying] {
             return existing
         }
         let map = Text.Line.Map(scanning: contents[id.underlying])
-        lineMaps[id.underlying] = map
+        maps[id.underlying] = map
         return map
     }
 
