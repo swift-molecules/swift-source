@@ -12,11 +12,6 @@
 // MARK: - Codable
 
 #if !hasFeature(Embedded)
-    // The `Codable` conformance below realizes the stdlib `Decodable`/`Encodable`
-    // requirements, whose signatures mandate existential decoder/encoder parameters
-    // and untyped `throws`. Neither can be narrowed at the conformance site, so the
-    // two rules are disabled for this block only.
-    // swiftlint:disable no_any_protocol_existential typed_throws_required
     extension Source.Location: Codable {
         @usableFromInline
         internal enum CodingKeys: Swift.String, CodingKey {
@@ -54,5 +49,4 @@
             try container.encode(position.column.underlying.rawValue, forKey: .column)
         }
     }
-// swiftlint:enable no_any_protocol_existential typed_throws_required
 #endif

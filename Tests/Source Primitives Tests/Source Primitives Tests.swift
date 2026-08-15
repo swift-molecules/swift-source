@@ -340,7 +340,11 @@ extension Source.Manager {
         func `lazy line map computation`() {
             var manager = Source.Manager()
             let content: [Byte] = "a\nb\nc".utf8.map(Byte.init)
-            let id = manager.register(fileID: "M/test.swift", filePath: "test.swift", content: content)
+            let id = manager.register(
+                fileID: "M/test.swift",
+                filePath: "test.swift",
+                content: content
+            )
 
             let map1 = manager.lineMap(for: id)
             #expect(map1.lineCount == 3)
