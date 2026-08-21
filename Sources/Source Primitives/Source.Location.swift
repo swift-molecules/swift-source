@@ -1,50 +1,13 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-source-primitives open source project
-//
-// Copyright (c) 2025 Coen ten Thije Boonkkamp and the swift-source-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 extension Source {
-    /// A self-contained, human-readable source location.
-    ///
-    /// `Source.Location` is the display-oriented representation that includes
-    /// a file identifier string, an optional file path, and a ``Text/Location``
-    /// (line and column). It is fully self-contained — no manager or handle
-    /// required for display.
-    ///
-    /// This is the type used by diagnostic messages, test frameworks, and
-    /// any context where a location must be presented to a human. It composes
-    /// ``Text/Location`` for the line:column substructure.
-    ///
-    /// ## Design
-    ///
-    /// `Source.Location ≅ FileIdentity × Text.Location`
-    ///
-    /// The `fileID` string matches Swift's `#fileID` (e.g., `"MyModule/File.swift"`).
-    /// The optional `filePath` matches `#filePath` for display when available.
+
     public struct Location: Sendable, Hashable {
-        /// The Swift `#fileID` identifying the source module and file.
+
         public let fileID: Swift.String
 
-        /// The file system path, if available.
-        ///
-        /// Matches Swift's `#filePath`.
         public let filePath: Swift.String?
 
-        /// The line and column within the file.
         public let position: Text.Location
 
-        /// Creates a location from explicit components.
-        ///
-        /// - Parameters:
-        ///   - fileID: The `#fileID`-style module/file identifier.
-        ///   - filePath: The optional file system path.
-        ///   - position: The line:column position within the file.
         @inlinable
         public init(
             fileID: Swift.String,
@@ -56,16 +19,6 @@ extension Source {
             self.position = position
         }
 
-        /// Creates a location from file identity and integer line/column values.
-        ///
-        /// This convenience initializer accepts `Int` parameters matching the
-        /// types produced by Swift's `#line` and `#column` literals.
-        ///
-        /// - Parameters:
-        ///   - fileID: The `#fileID`-style module/file identifier.
-        ///   - filePath: The optional file system path.
-        ///   - line: The 1-based line number.
-        ///   - column: The 1-based column number.
         @inlinable
         public init(
             fileID: Swift.String,
@@ -81,18 +34,6 @@ extension Source {
             )
         }
 
-        /// Creates a location from a typed ``Text/Line/Number`` and a
-        /// 1-based integer column.
-        ///
-        /// Use this overload when propagating a typed line value (e.g., from
-        /// ``Source/Location/line`` on another location, or directly from
-        /// ``Text/Location/line``) without an intermediate `Int` round-trip.
-        ///
-        /// - Parameters:
-        ///   - fileID: The `#fileID`-style module/file identifier.
-        ///   - filePath: The optional file system path.
-        ///   - line: The typed 1-based line number.
-        ///   - column: The 1-based column number.
         @inlinable
         public init(
             fileID: Swift.String,
@@ -108,21 +49,6 @@ extension Source {
             )
         }
 
-        /// Creates a location from a typed ``Text/Line/Number`` and a
-        /// typed ``Text/Line/Column``.
-        ///
-        /// Use this overload when propagating both typed line and column
-        /// values without intermediate `Int` round-trips. Mirrors the
-        /// Wave 1A typed-`line` shape: propagate typed columns end-to-end
-        /// (e.g., from ``Source/Location/column`` on another location, or
-        /// directly from ``Text/Location/column``) without re-narrowing to
-        /// `Int` and re-widening.
-        ///
-        /// - Parameters:
-        ///   - fileID: The `#fileID`-style module/file identifier.
-        ///   - filePath: The optional file system path.
-        ///   - line: The typed 1-based line number.
-        ///   - column: The typed 1-based column offset (UTF-8 bytes).
         @inlinable
         public init(
             fileID: Swift.String,
@@ -137,48 +63,21 @@ extension Source {
     }
 }
 
-// MARK: - Convenience Accessors
-
 extension Source.Location {
-    /// The 1-based line number.
-    ///
-    /// Returns the typed ``Text/Line/Number`` directly from the
-    /// underlying ``position``. Consumers needing a raw `Int` for
-    /// stdlib API (e.g., `JSON(integerLiteral:)`, arithmetic with
-    /// existing `Int`-typed offsets) MUST call `.underlying` at the
-    /// boundary; consumers propagating the typed value into another
-    /// ``Source/Location`` MAY pass it directly via the
-    /// ``init(fileID:filePath:line:column:)-(_,_,Text.Line.Number,_)``
-    /// overload.
+
     @inlinable
     public var line: Text.Line.Number {
         position.line
     }
 
-    /// The 1-based column offset, measured in UTF-8 bytes.
-    ///
-    /// Returns the typed ``Text/Line/Column`` directly from the
-    /// underlying ``position``. Consumers needing a raw `Int` for
-    /// stdlib API (e.g., `JSON(integerLiteral:)`, arithmetic with
-    /// existing `Int`-typed offsets, the SwiftSyntax
-    /// `SourceLocationConverter.position(ofLine:column:)` boundary)
-    /// MUST call `Int(bitPattern: location.column)` at the boundary
-    /// (via the `Int.init<Tag>(bitPattern: Tagged<Tag, Cardinal>)`
-    /// overload in `Cardinal Primitives`); consumers propagating the
-    /// typed value into another ``Source/Location`` MAY pass it
-    /// directly via the
-    /// ``init(fileID:filePath:line:column:)-(_,_,Text.Line.Number,Text.Line.Column)``
-    /// overload.
     @inlinable
     public var column: Text.Line.Column {
         position.column
     }
 }
 
-// MARK: - Comparable
-
 extension Source.Location: Comparable {
-    /// Orders locations by file identity first, then by line:column within the file.
+
     @inlinable
     public static func < (lhs: Self, rhs: Self) -> Bool {
         if lhs.fileID != rhs.fileID { return lhs.fileID < rhs.fileID }
@@ -186,10 +85,8 @@ extension Source.Location: Comparable {
     }
 }
 
-// MARK: - CustomStringConvertible
-
 extension Source.Location: CustomStringConvertible {
-    /// A `fileID:line:column` rendering of the location.
+
     @inlinable
     public var description: Swift.String {
         "\(fileID):\(position.line):\(position.column)"

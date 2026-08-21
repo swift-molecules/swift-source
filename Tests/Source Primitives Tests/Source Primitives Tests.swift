@@ -1,21 +1,8 @@
-// ===----------------------------------------------------------------------===//
-//
-// This source file is part of the swift-source-primitives open source project
-//
-// Copyright (c) 2025 Coen ten Thije Boonkkamp and the swift-source-primitives project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE for license information
-//
-// ===----------------------------------------------------------------------===//
-
 import Byte_Primitives
 import Source_Primitives_Test_Support
 import Testing
 
 @testable import Source_Primitives
-
-// MARK: - Source.File.ID
 
 extension Source.File.ID {
     @Suite("Source.File.ID")
@@ -51,8 +38,6 @@ extension Source.File.ID {
     }
 }
 
-// MARK: - Source.File
-
 extension Source.File {
     @Suite("Source.File")
     struct Test {
@@ -78,8 +63,6 @@ extension Source.File {
         }
     }
 }
-
-// MARK: - Source.Position
 
 extension Source.Position {
     @Suite("Source.Position")
@@ -117,8 +100,6 @@ extension Source.Position {
         }
     }
 }
-
-// MARK: - Source.Location
 
 extension Source.Location {
     @Suite("Source.Location")
@@ -211,8 +192,6 @@ extension Source.Location {
     }
 }
 
-// MARK: - Source.Range
-
 extension Source.Range {
     @Suite("Source.Range")
     struct Test {
@@ -271,8 +250,6 @@ extension Source.Range {
     }
 }
 
-// MARK: - Source.Manager
-
 extension Source.Manager {
     @Suite("Source.Manager")
     struct Test {
@@ -311,7 +288,7 @@ extension Source.Manager {
         @Test
         func `location resolution`() {
             var manager = Source.Manager()
-            // "func foo() {\n    return\n}"
+
             let content: [Byte] = "func foo() {\n    return\n}".utf8.map(Byte.init)
             let id = manager.register(
                 fileID: "TestModule/test.swift",
