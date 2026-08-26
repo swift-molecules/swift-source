@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "swift-source-primitives",
+    name: "swift-source",
     platforms: [
         .macOS(.v27),
         .iOS(.v27),
@@ -13,47 +13,47 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Source Primitives",
-            targets: ["Source Primitives"]
+            name: "Source",
+            targets: ["Source"]
         ),
         .library(
-            name: "Source Primitives Test Support",
-            targets: ["Source Primitives Test Support"]
+            name: "Source Test Support",
+            targets: ["Source Test Support"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-byte-primitives.git",
+            url: "https://github.com/swift-molecules/swift-byte.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-text-primitives.git",
+            url: "https://github.com/swift-molecules/swift-text.git",
             branch: "main"
         ),
     ],
     targets: [
         .target(
-            name: "Source Primitives",
+            name: "Source",
             dependencies: [
-                .product(name: "Byte Primitives", package: "swift-byte-primitives"),
-                .product(name: "Text Primitives", package: "swift-text-primitives"),
+                .product(name: "Byte", package: "swift-byte"),
+                .product(name: "Text", package: "swift-text"),
             ]
         ),
         .target(
-            name: "Source Primitives Test Support",
+            name: "Source Test Support",
             dependencies: [
-                "Source Primitives",
-                .product(name: "Text Primitives Test Support", package: "swift-text-primitives"),
+                "Source",
+                .product(name: "Text Test Support", package: "swift-text"),
             ],
             path: "Tests/Support"
         ),
         .testTarget(
-            name: "Source Primitives Tests",
+            name: "Source Tests",
             dependencies: [
-                "Source Primitives",
-                "Source Primitives Test Support",
+                "Source",
+                "Source Test Support",
             ],
-            path: "Tests/Source Primitives Tests"
+            path: "Tests/Source Tests"
         ),
     ],
     swiftLanguageModes: [.v6]

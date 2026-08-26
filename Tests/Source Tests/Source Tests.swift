@@ -1,8 +1,8 @@
-import Byte_Primitives
-import Source_Primitives_Test_Support
+import Byte
+import Source_Test_Support
 import Testing
 
-@testable import Source_Primitives
+@testable import Source
 
 extension Source.File.ID {
     @Suite("Source.File.ID")

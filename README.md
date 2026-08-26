@@ -1,4 +1,4 @@
-# Source Primitives
+# Source
 
 ![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
 
@@ -11,7 +11,7 @@ Source-location value types for Swift — a `Source` namespace of file-qualified
 `Source` is the vocabulary lexers, parsers, and diagnostic engines use to say *where* something is. Tokens and AST nodes carry a compact `Source.Position` — a file ID plus a byte offset — and never the line:column. Line and column are derived only when a human needs to read them, exactly as swiftc, Clang, and swift-syntax defer that work.
 
 ```swift
-import Source_Primitives
+import Source
 
 // The Manager owns all source content; it is the single owner per compilation (~Copyable).
 var manager = Source.Manager()
@@ -36,7 +36,7 @@ print(location.column)       // Text.Line.Column (1-based, UTF-8 bytes)
 `Source.Position` answers "which file, and where in that file?" with no line/column. `Source.Location` is the self-contained, human-readable form — `fileID`, optional `filePath`, and a `Text.Location` (line:column) — that needs no manager to display. `Source.Range` marks a half-open `[start, end)` byte extent within one file, the shape used for tokens, AST nodes, and diagnostic highlights:
 
 ```swift
-import Source_Primitives
+import Source
 
 let range = Source.Range(file: id, start: 0, count: 4)   // the `func` keyword
 print(range.count)                  // Text.Count(4)
@@ -52,7 +52,7 @@ print(range.startPosition)          // file(0):0
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-primitives/swift-source-primitives.git", branch: "main")
+    .package(url: "https://github.com/swift-molecules/swift-source.git", branch: "main")
 ]
 ```
 
@@ -60,7 +60,7 @@ dependencies: [
 .target(
     name: "App",
     dependencies: [
-        .product(name: "Source Primitives", package: "swift-source-primitives"),
+        .product(name: "Source", package: "swift-source"),
     ]
 )
 ```
@@ -71,12 +71,12 @@ Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26 
 
 ## Architecture
 
-Two library products. Builds on `Text Primitives` (re-exported: `Text.Position`, `Text.Range`, `Text.Location`, `Text.Line`) and `Byte Primitives` (the `Byte` content element).
+Two library products. Builds on `Text` (re-exported: `Text.Position`, `Text.Range`, `Text.Location`, `Text.Line`) and `Byte` (the `Byte` content element).
 
 | Product | Target | Purpose |
 |---------|--------|---------|
-| `Source Primitives` | `Sources/Source Primitives/` | The `Source` namespace: `Source.File` and its identity handle `Source.File.ID`; `Source.Position` (file + byte offset); `Source.Range` (file-qualified half-open extent); `Source.Location` (self-contained file + line:column); and `Source.Manager`, the `~Copyable` registry that owns content and resolves locations. |
-| `Source Primitives Test Support` | `Tests/Support/` | Re-exports the main target for test consumers. |
+| `Source` | `Sources/Source/` | The `Source` namespace: `Source.File` and its identity handle `Source.File.ID`; `Source.Position` (file + byte offset); `Source.Range` (file-qualified half-open extent); `Source.Location` (self-contained file + line:column); and `Source.Manager`, the `~Copyable` registry that owns content and resolves locations. |
+| `Source Test Support` | `Tests/Support/` | Re-exports the main target for test consumers. |
 
 Foundation-free.
 
