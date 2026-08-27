@@ -1,3 +1,6 @@
+public import Source
+public import Text
+
 #if !hasFeature(Embedded)
     extension Source.Location: Codable {
         @usableFromInline

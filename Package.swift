@@ -17,17 +17,21 @@ let package = Package(
             targets: ["Source"]
         ),
         .library(
-            name: "Source Test Support",
-            targets: ["Source Test Support"]
+            name: "Source Standard Library Integration",
+            targets: ["Source Standard Library Integration"]
+        ),
+        .library(
+            name: "Source Apple Foundation Integration",
+            targets: ["Source Apple Foundation Integration"]
         ),
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-molecules/swift-byte.git",
+            url: "https://github.com/swift-atoms/swift-byte.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-text.git",
+            url: "https://github.com/swift-atoms/swift-text.git",
             branch: "main"
         ),
     ],
@@ -40,19 +44,19 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Source Test Support",
+            name: "Source Standard Library Integration",
+            dependencies: ["Source"]
+        ),
+        .target(
+            name: "Source Apple Foundation Integration",
             dependencies: [
                 "Source",
-                .product(name: "Text Test Support", package: "swift-text"),
-            ],
-            path: "Tests/Support"
+                "Source Standard Library Integration",
+            ]
         ),
         .testTarget(
             name: "Source Tests",
-            dependencies: [
-                "Source",
-                "Source Test Support",
-            ],
+            dependencies: ["Source"],
             path: "Tests/Source Tests"
         ),
     ],

@@ -1,3 +1,5 @@
+public import Text
+
 extension Source {
 
     public struct Range: Sendable, Equatable, Hashable {

@@ -1,3 +1,5 @@
+public import Text
+
 extension Source {
 
     public struct Location: Sendable, Hashable {

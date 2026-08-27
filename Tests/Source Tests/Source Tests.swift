@@ -1,5 +1,5 @@
 import Byte
-import Source_Test_Support
+import Text
 import Testing
 
 @testable import Source

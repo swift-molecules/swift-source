@@ -1,4 +1,5 @@
 public import Byte
+public import Text
 
 extension Source {
 
