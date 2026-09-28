@@ -32,7 +32,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/swift-atoms/swift-text.git",
-            branch: "main"
+            branch: "main", traits: ["Byte"]
         ),
     ],
     targets: [
@@ -45,7 +45,7 @@ let package = Package(
         ),
         .target(
             name: "Source Standard Library Integration",
-            dependencies: ["Source"]
+            dependencies: ["Source", .product(name: "Text", package: "swift-text")]
         ),
         .target(
             name: "Source Apple Foundation Integration",
@@ -56,7 +56,7 @@ let package = Package(
         ),
         .testTarget(
             name: "Source Tests",
-            dependencies: ["Source"],
+            dependencies: ["Source", .product(name: "Text", package: "swift-text"), .product(name: "Byte", package: "swift-byte")],
             path: "Tests/Source Tests"
         ),
     ],

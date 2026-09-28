@@ -262,7 +262,7 @@ extension Source.Manager {
         @Test
         func `register file`() {
             var manager = Source.Manager()
-            let content: [Byte] = "let x = 1".utf8.map(Byte.init)
+            let content: [Byte] = [Byte](utf8: "let x = 1")
             let id = manager.register(
                 fileID: "TestModule/main.swift",
                 filePath: "main.swift",
@@ -289,7 +289,7 @@ extension Source.Manager {
         func `location resolution`() {
             var manager = Source.Manager()
 
-            let content: [Byte] = "func foo() {\n    return\n}".utf8.map(Byte.init)
+            let content: [Byte] = [Byte](utf8: "func foo() {\n    return\n}")
             let id = manager.register(
                 fileID: "TestModule/test.swift",
                 filePath: "test.swift",
@@ -316,7 +316,7 @@ extension Source.Manager {
         @Test
         func `lazy line map computation`() {
             var manager = Source.Manager()
-            let content: [Byte] = "a\nb\nc".utf8.map(Byte.init)
+            let content: [Byte] = [Byte](utf8: "a\nb\nc")
             let id = manager.register(
                 fileID: "M/test.swift",
                 filePath: "test.swift",
@@ -336,12 +336,12 @@ extension Source.Manager {
             let id0 = manager.register(
                 fileID: "M/a.swift",
                 filePath: "a.swift",
-                content: "line1\nline2".utf8.map(Byte.init)
+                content: [Byte](utf8: "line1\nline2")
             )
             let id1 = manager.register(
                 fileID: "M/b.swift",
                 filePath: "b.swift",
-                content: "only one line".utf8.map(Byte.init)
+                content: [Byte](utf8: "only one line")
             )
 
             let map0 = manager.lineMap(for: id0)
