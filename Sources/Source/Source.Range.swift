@@ -64,7 +64,7 @@ extension Source.Range {
 extension Source.Range: CustomStringConvertible {
 
     @inlinable
-    public var description: Swift.String {
+    public var description: Swift::String {
         "\(file):\(start)..<\(end)"
     }
 }

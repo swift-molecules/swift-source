@@ -4,16 +4,16 @@ extension Source {
 
     public struct Location: Sendable, Hashable {
 
-        public let fileID: Swift.String
+        public let fileID: Swift::String
 
-        public let filePath: Swift.String?
+        public let filePath: Swift::String?
 
         public let position: Text.Location
 
         @inlinable
         public init(
-            fileID: Swift.String,
-            filePath: Swift.String? = nil,
+            fileID: Swift::String,
+            filePath: Swift::String? = nil,
             position: Text.Location
         ) {
             self.fileID = fileID
@@ -23,8 +23,8 @@ extension Source {
 
         @inlinable
         public init(
-            fileID: Swift.String,
-            filePath: Swift.String? = nil,
+            fileID: Swift::String,
+            filePath: Swift::String? = nil,
             line: Int,
             column: Int
         ) {
@@ -38,8 +38,8 @@ extension Source {
 
         @inlinable
         public init(
-            fileID: Swift.String,
-            filePath: Swift.String? = nil,
+            fileID: Swift::String,
+            filePath: Swift::String? = nil,
             line: Text.Line.Number,
             column: Int
         ) {
@@ -53,8 +53,8 @@ extension Source {
 
         @inlinable
         public init(
-            fileID: Swift.String,
-            filePath: Swift.String? = nil,
+            fileID: Swift::String,
+            filePath: Swift::String? = nil,
             line: Text.Line.Number,
             column: Text.Line.Column
         ) {
@@ -90,7 +90,7 @@ extension Source.Location: Comparable {
 extension Source.Location: CustomStringConvertible {
 
     @inlinable
-    public var description: Swift.String {
+    public var description: Swift::String {
         "\(fileID):\(position.line):\(position.column)"
     }
 }

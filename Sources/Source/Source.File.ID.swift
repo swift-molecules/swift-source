@@ -22,7 +22,7 @@ extension Source.File.ID {
 extension Source.File.ID: CustomStringConvertible {
 
     @inlinable
-    public var description: Swift.String {
+    public var description: Swift::String {
         "file(\(underlying))"
     }
 }

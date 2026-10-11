@@ -27,8 +27,8 @@ extension Source.Manager {
     @inlinable
     @discardableResult
     public mutating func register(
-        fileID: Swift.String,
-        filePath: Swift.String,
+        fileID: Swift::String,
+        filePath: Swift::String,
         content: [Byte]
     ) -> Source.File.ID {
         let id = Source.File.ID(files.count)

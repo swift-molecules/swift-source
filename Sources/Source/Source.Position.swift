@@ -19,7 +19,7 @@ extension Source {
 extension Source.Position: CustomStringConvertible {
 
     @inlinable
-    public var description: Swift.String {
+    public var description: Swift::String {
         "\(file):\(offset)"
     }
 }
