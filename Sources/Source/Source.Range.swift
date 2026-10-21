@@ -22,7 +22,11 @@ extension Source {
             self.file = file
             self.start = start
 
-            self.end = try! start + Text.Offset(count)
+            do {
+                self.end = try start + Text.Offset(count)
+            } catch {
+                preconditionFailure("A count from a valid start position must yield a representable end position: \(error)")
+            }
         }
     }
 }
@@ -31,8 +35,11 @@ extension Source.Range {
 
     @inlinable
     public var count: Text.Count {
-
-        try! start.distance.forward(to: end)
+        do {
+            return try start.distance.forward(to: end)
+        } catch {
+            preconditionFailure("A range's end must be reachable forward from its start: \(error)")
+        }
     }
 
     @inlinable

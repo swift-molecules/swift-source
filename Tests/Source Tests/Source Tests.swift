@@ -1,6 +1,6 @@
 import Byte
-import Text
 import Testing
+import Text
 
 @testable import Source
 
