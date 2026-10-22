@@ -1,7 +1,7 @@
-public import Source
-public import Text
-
 #if !hasFeature(Embedded)
+    public import Source
+    public import Text
+
     extension Source.Location: Codable {
         @usableFromInline
         internal enum CodingKeys: Swift::String, CodingKey {
