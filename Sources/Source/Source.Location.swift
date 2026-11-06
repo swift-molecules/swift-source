@@ -6,6 +6,8 @@ extension Source {
 
         public let fileID: Swift::String
 
+        // swift-linter:disable:next raw concept
+        // REASON: The compiler's #filePath text, carried verbatim for diagnostics and SwiftSyntax. It may name no file, as a control's or macro's does, so Path, which refuses empty text, isn't its owner.
         public let filePath: Swift::String?
 
         public let position: Text.Location
@@ -13,6 +15,8 @@ extension Source {
         @inlinable
         public init(
             fileID: Swift::String,
+            // swift-linter:disable:next raw concept
+            // REASON: The compiler's #filePath text, carried verbatim for diagnostics and SwiftSyntax. It may name no file, as a control's or macro's does, so Path, which refuses empty text, isn't its owner.
             filePath: Swift::String? = nil,
             position: Text.Location
         ) {
@@ -24,6 +28,8 @@ extension Source {
         @inlinable
         public init(
             fileID: Swift::String,
+            // swift-linter:disable:next raw concept
+            // REASON: The compiler's #filePath text, carried verbatim for diagnostics and SwiftSyntax. It may name no file, as a control's or macro's does, so Path, which refuses empty text, isn't its owner.
             filePath: Swift::String? = nil,
             line: Int,
             column: Int
@@ -39,6 +45,8 @@ extension Source {
         @inlinable
         public init(
             fileID: Swift::String,
+            // swift-linter:disable:next raw concept
+            // REASON: The compiler's #filePath text, carried verbatim for diagnostics and SwiftSyntax. It may name no file, as a control's or macro's does, so Path, which refuses empty text, isn't its owner.
             filePath: Swift::String? = nil,
             line: Text.Line.Number,
             column: Int
@@ -54,6 +62,8 @@ extension Source {
         @inlinable
         public init(
             fileID: Swift::String,
+            // swift-linter:disable:next raw concept
+            // REASON: The compiler's #filePath text, carried verbatim for diagnostics and SwiftSyntax. It may name no file, as a control's or macro's does, so Path, which refuses empty text, isn't its owner.
             filePath: Swift::String? = nil,
             line: Text.Line.Number,
             column: Text.Line.Column
