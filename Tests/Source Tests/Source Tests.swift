@@ -4,7 +4,9 @@ import Text
 
 @testable import Source
 
-extension Source.File.ID {
+enum `Source.File.ID Tests` {}
+
+extension `Source.File.ID Tests` {
     @Suite("Source.File.ID")
     struct Test {
         @Test
@@ -38,7 +40,9 @@ extension Source.File.ID {
     }
 }
 
-extension Source.File {
+enum `Source.File Tests` {}
+
+extension `Source.File Tests` {
     @Suite("Source.File")
     struct Test {
         @Test
@@ -64,7 +68,9 @@ extension Source.File {
     }
 }
 
-extension Source.Position {
+enum `Source.Position Tests` {}
+
+extension `Source.Position Tests` {
     @Suite("Source.Position")
     struct Test {
         @Test
@@ -101,7 +107,9 @@ extension Source.Position {
     }
 }
 
-extension Source.Location {
+enum `Source.Location Tests` {}
+
+extension `Source.Location Tests` {
     @Suite("Source.Location")
     struct Test {
         @Test
@@ -192,7 +200,9 @@ extension Source.Location {
     }
 }
 
-extension Source.Range {
+enum `Source.Range Tests` {}
+
+extension `Source.Range Tests` {
     @Suite("Source.Range")
     struct Test {
         @Test
@@ -250,7 +260,9 @@ extension Source.Range {
     }
 }
 
-extension Source.Manager {
+enum `Source.Manager Tests` {}
+
+extension `Source.Manager Tests` {
     @Suite("Source.Manager")
     struct Test {
         @Test
