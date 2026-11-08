@@ -7,7 +7,7 @@ import Text
 enum `Source.File.ID Tests` {}
 
 extension `Source.File.ID Tests` {
-    @Suite("Source.File.ID")
+    @Suite
     struct Test {
         @Test
         func `equatable`() {
@@ -43,7 +43,7 @@ extension `Source.File.ID Tests` {
 enum `Source.File Tests` {}
 
 extension `Source.File Tests` {
-    @Suite("Source.File")
+    @Suite
     struct Test {
         @Test
         func `stores id, fileID, and filePath`() {
@@ -71,7 +71,7 @@ extension `Source.File Tests` {
 enum `Source.Position Tests` {}
 
 extension `Source.Position Tests` {
-    @Suite("Source.Position")
+    @Suite
     struct Test {
         @Test
         func `stores file and offset`() {
@@ -110,7 +110,7 @@ extension `Source.Position Tests` {
 enum `Source.Location Tests` {}
 
 extension `Source.Location Tests` {
-    @Suite("Source.Location")
+    @Suite
     struct Test {
         @Test
         func `memberwise init`() {
@@ -203,7 +203,7 @@ extension `Source.Location Tests` {
 enum `Source.Range Tests` {}
 
 extension `Source.Range Tests` {
-    @Suite("Source.Range")
+    @Suite
     struct Test {
         @Test
         func `init from start and end`() {
@@ -263,7 +263,7 @@ extension `Source.Range Tests` {
 enum `Source.Manager Tests` {}
 
 extension `Source.Manager Tests` {
-    @Suite("Source.Manager")
+    @Suite
     struct Test {
         @Test
         func `empty manager`() {
