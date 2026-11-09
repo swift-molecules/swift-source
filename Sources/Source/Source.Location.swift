@@ -95,7 +95,7 @@ extension Source.Location: Comparable {
         if lhs.fileID != rhs.fileID { return lhs.fileID < rhs.fileID }
         if lhs.position != rhs.position { return lhs.position < rhs.position }
         switch (lhs.filePath, rhs.filePath) {
-        case let (left?, right?): return left < right
+        case (let left?, let right?): return left < right
         case (nil, _?): return true
         case (_?, nil), (nil, nil): return false
         }
