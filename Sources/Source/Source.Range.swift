@@ -54,7 +54,11 @@ extension Source.Range {
 
     @inlinable
     public var textRange: Text.Range {
-        Text.Range(start: start, end: end)
+        do throws(Text.Range.Error) {
+            return try Text.Range(start: start, end: end)
+        } catch {
+            preconditionFailure("A range's end must not precede its start: \(error)")
+        }
     }
 
     @inlinable
