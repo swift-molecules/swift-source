@@ -182,6 +182,20 @@ extension `Source.Location Tests` {
         }
 
         @Test
+        func `comparable — locations differing only in filePath are ordered`() {
+            let none = Source.Location(fileID: "M/F.swift", line: 5, column: 10)
+            let a = Source.Location(fileID: "M/F.swift", filePath: "/a/F.swift", line: 5, column: 10)
+            let b = Source.Location(fileID: "M/F.swift", filePath: "/b/F.swift", line: 5, column: 10)
+            #expect(a != b)
+            #expect(a < b)
+            #expect(!(b < a))
+            #expect(none < a)
+            #expect(!(a < none))
+            #expect(!(none < none))
+            #expect([b, none, a].sorted() == [none, a, b])
+        }
+
+        @Test
         func `equatable`() {
             let a = Source.Location(fileID: "M/F.swift", line: 5, column: 10)
             let b = Source.Location(fileID: "M/F.swift", line: 5, column: 10)

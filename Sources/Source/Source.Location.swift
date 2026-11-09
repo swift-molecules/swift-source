@@ -93,7 +93,12 @@ extension Source.Location: Comparable {
     @inlinable
     public static func < (lhs: Self, rhs: Self) -> Bool {
         if lhs.fileID != rhs.fileID { return lhs.fileID < rhs.fileID }
-        return lhs.position < rhs.position
+        if lhs.position != rhs.position { return lhs.position < rhs.position }
+        switch (lhs.filePath, rhs.filePath) {
+        case let (left?, right?): return left < right
+        case (nil, _?): return true
+        case (_?, nil), (nil, nil): return false
+        }
     }
 }
 
