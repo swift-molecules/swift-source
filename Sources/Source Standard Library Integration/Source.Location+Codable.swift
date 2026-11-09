@@ -17,7 +17,21 @@
             let fileID = try container.decode(Swift::String.self, forKey: .fileID)
             let filePath = try container.decodeIfPresent(Swift::String.self, forKey: .filePath)
             let line = try container.decode(UInt.self, forKey: .line)
+            guard line > 0 else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: .line,
+                    in: container,
+                    debugDescription: "Line numbers start at 1."
+                )
+            }
             let column = try container.decode(UInt.self, forKey: .column)
+            guard column > 0 else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: .column,
+                    in: container,
+                    debugDescription: "Columns start at 1."
+                )
+            }
             self.init(
                 fileID: fileID,
                 filePath: filePath,
