@@ -57,7 +57,9 @@ let package = Package(
         ),
         .testTarget(
             name: "Source Tests",
-            dependencies: [.target(name: "Source"), .target(name: "Source Standard Library Integration"), .product(name: "Text", package: "swift-text"), .product(name: "Byte", package: "swift-byte")],
+            dependencies: [
+                .target(name: "Source"), .target(name: "Source Standard Library Integration"), .product(name: "Text", package: "swift-text"), .product(name: "Byte", package: "swift-byte"),
+            ],
             path: "Tests/Source Tests"
         ),
     ],
